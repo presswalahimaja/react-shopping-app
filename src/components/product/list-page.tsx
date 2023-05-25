@@ -42,8 +42,13 @@ const ListPage = () => {
         ) : error ? (
           <div>{error}</div>
         ) : (
+          // assuming productList only has one products array, based on category.json
           products?.productList[0]?.products.map((product: any) => (
-            <Tile product={product}></Tile>
+            <Tile
+              // only unique identifier found in products array data
+              key={product['extended-size-group-id']}
+              product={product}
+            ></Tile>
           ))
         )}
       </div>
