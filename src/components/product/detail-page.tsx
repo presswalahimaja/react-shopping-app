@@ -1,20 +1,11 @@
-import data from '../../category';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import ColorSwatch from '../colors/color-swatch';
 import { useState } from 'react';
 const DetailPage = () => {
   const location = useLocation();
-  const { colorCode } = location.state;
+  const { colorCode, product } = location.state;
 
   const [selectedColorCode, setSelectedColorCode] = useState(colorCode);
-
-  const params = useParams();
-  const { productCode } = params;
-  const product = data.productList[0].products.filter(
-    (product) =>
-      product.productCode === productCode &&
-      product.tiles[0].toString() === colorCode.toString()
-  )[0];
 
   const handleColorClick = (colorCode: string) => {
     setSelectedColorCode(colorCode);
@@ -24,24 +15,24 @@ const DetailPage = () => {
     <div className="product-detail">
       <div>
         <img
-          src={`https://www.jcrew.com/s7-img-facade/${productCode}_${selectedColorCode}`}
+          src={`https://www.jcrew.com/s7-img-facade/${product.productCode}_${selectedColorCode}`}
           alt={product.productDescription}
         />
       </div>
       <div>
         <p className="product-badge">{product.badge?.label}</p>
         <p className="product-description">{product.productDescription}</p>
-        <p className="product-code">Item {productCode}</p>
+        <p className="product-code">Item {product.productCode}</p>
         <p className="product-price">{product.listPrice.formatted}</p>
         <p className="color-swatch-text">
           <span className="color-swatch-label">Color:</span>
           <span>{product.defaultColorCode}</span>
         </p>
         <div className="color-swatches-wrapper">
-          {product.colors.map((color) => (
+          {product.colors.map((color: any) => (
             <ColorSwatch
               key={color.colorCode}
-              productCode={productCode}
+              productCode={product.productCode}
               color={color}
               isSelected={
                 // assuming tiles only has one color, based on category.json

@@ -19,7 +19,7 @@ const Tile = (props: any) => {
       <div key={product['extended-size-group-id']} className="product">
         <Link
           to={`/products/${productCode}`}
-          state={{ colorCode: selectedColorCode }}
+          state={{ colorCode: selectedColorCode, product }}
         >
           <img
             src={`https://www.jcrew.com/s7-img-facade/${productCode}_${selectedColorCode}`}
