@@ -7,7 +7,7 @@ import ListPage from './components/product/list-page';
 
 function App() {
   return (
-    <div>
+    <div className="app-wrapper">
       <main>
         <BrowserRouter>
           <Routes>

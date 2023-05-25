@@ -46,25 +46,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.site-container {
-  min-height: 100vh;
+
+.app-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
 main {
   flex: 1;
 }
-.btn-primary,
-.btn-outline-primary {
-  background-color: #f0c040;
-  color: #000000;
-}
+
 .products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.rating span {
-  color: #ffc000;
 }
 
 .product {
@@ -83,90 +78,28 @@ main {
   text-transform: uppercase;
   font-size: calc(6px + 1vmin);
 }
-.img-large {
-  max-width: 100%;
-}
-.img-thumbnail {
-  height: 80px;
-}
-.small-container {
-  max-width: 600px;
-}
 
-.checkout-steps > div {
-  border-bottom: 0.2rem solid #a0a0a0;
-  color: #a0a0a0;
+.product-description {
+  font-weight: 500;
+  margin-bottom: 5px;
 }
-.checkout-steps > div.active {
-  border-bottom: 0.2rem solid #f08000;
-  color: #f08000;
-}
-
-/* sidebar */
-.navbar-brand {
-  font-weight: bold;
-}
-.side-navbar {
-  width: 240px;
-  height: 100%;
-  position: absolute;
-  left: -300px;
-  background-color: #100901;
-  transition: 0.5s;
-}
-
-.site-container {
-  transition: 0.4s;
-}
-.active-cont {
-  margin-left: 240px;
-}
-.active-nav {
-  left: 0;
-}
-.text-bold {
-  font-weight: bold;
-}
-
-/* Map */
-
-.full-box {
-  height: 100vh;
-  max-width: initial;
-}
-.full-box header,
-.full-box footer {
-  display: none;
-}
-.full-box .container {
-  height: 100vh;
-  max-width: initial;
+.product-code {
+  font-weight: 400;
+  color: #404040;
+  font-size: calc(8px + 1vmin);
   margin: 0;
-  padding: 0;
+}
+.product-price {
+  font-weight: 600;
 }
 
-.full-box .mt-3 {
-  margin-top: 0 !important;
+/* detail page */
+.product-detail {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  column-gap: 20px;
 }
 
-.map-input-box {
-  box-sizing: border-box;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0.5rem auto;
-  width: 25rem;
-  height: 3rem;
-  display: flex;
-}
-.map-input-box input {
-  border-radius: 1rem 0 0 1rem;
-  border-right: 0;
-}
-.map-input-box button {
-  border-radius: 0 1rem 1rem 0;
-  border-left: 0;
-}
-button.thumbnail {
-  padding: 0;
+.product-detail img {
+  width: 100%;
 }
