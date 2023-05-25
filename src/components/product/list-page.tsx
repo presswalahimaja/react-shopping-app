@@ -1,27 +1,51 @@
-import { Link } from 'react-router-dom';
-import data from '../../category.js';
+import { useEffect, useReducer } from 'react';
+import axios from 'axios';
+import Tile from './tile';
+
+const reducer = (state: any, action: any) => {
+  switch (action.type) {
+    case 'FETCH_REQUEST':
+      return { ...state, loading: true };
+    case 'FETCH_SUCCESS':
+      return { ...state, loading: false, products: action.payload };
+    case 'FETCH_FAILURE':
+      return { ...state, loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 const ListPage = () => {
+  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
+    loading: true,
+    error: '',
+  });
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch({ type: 'FETCH_REQUEST' });
+      try {
+        const result = await axios.get('/api/products');
+        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+      } catch (err: any) {
+        dispatch({ type: 'FETCH_FAIL', payload: err.message });
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div>
       <h1> Women’s T-shirts & Tank Tops </h1>
       <div className="products">
-        {data.productList[0].products.map((product) => (
-          <div key={product['extended-size-group-id']} className="product">
-            <Link to={`/products/${product.productCode}`}>
-              <img
-                src={`https://www.jcrew.com/s7-img-facade/${product.productCode}_${product.defaultColorCode}`}
-                alt={product.productDescription}
-              />
-            </Link>
-            <div className="product-info">
-              <p className="product-badge">{product.badge?.label}</p>
-              <Link to={`/products/${product.productCode}`}>
-                <p>{product.productDescription}</p>
-              </Link>
-              <p>{product.listPrice.formatted}</p>
-            </div>
-          </div>
-        ))}
+        {loading ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div>{error}</div>
+        ) : (
+          products?.productList[0]?.products.map((product: any) => (
+            <Tile product={product}></Tile>
+          ))
+        )}
       </div>
     </div>
   );
