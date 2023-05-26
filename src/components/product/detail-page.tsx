@@ -1,6 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import ColorSwatch from '../colors/color-swatch';
 import { useState } from 'react';
+import { APIBaseURL } from '../../constants';
+
+// component to render product details
 const DetailPage = () => {
   const location = useLocation();
   const { colorCode, product } = location.state;
@@ -15,7 +18,7 @@ const DetailPage = () => {
     <div className="product-detail">
       <div>
         <img
-          src={`https://www.jcrew.com/s7-img-facade/${product.productCode}_${selectedColorCode}`}
+          src={`${APIBaseURL}/${product.productCode}_${selectedColorCode}`}
           alt={product.productDescription}
         />
       </div>
@@ -35,7 +38,6 @@ const DetailPage = () => {
               productCode={product.productCode}
               color={color}
               isSelected={
-                // assuming tiles only has one color, based on category.json
                 selectedColorCode.toString() === color.colorCode.toString()
                   ? true
                   : false

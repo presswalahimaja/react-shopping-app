@@ -1,3 +1,4 @@
+// component to render each color swatch
 const ColorSwatch = (props: any) => {
   const { color, productCode, isSelected, onColorClick } = props;
 

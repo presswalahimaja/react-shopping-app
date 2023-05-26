@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ColorSwatch from '../colors/color-swatch';
+import { APIBaseURL } from '../../constants';
 
+// component to render each product tile
 const Tile = (props: any) => {
   const { product } = props;
   const initSelectedColorCode = product.tiles[0].toString()
@@ -22,7 +24,7 @@ const Tile = (props: any) => {
           state={{ colorCode: selectedColorCode, product }}
         >
           <img
-            src={`https://www.jcrew.com/s7-img-facade/${productCode}_${selectedColorCode}`}
+            src={`${APIBaseURL}/${productCode}_${selectedColorCode}`}
             alt={product.productDescription}
           />
         </Link>
@@ -42,7 +44,6 @@ const Tile = (props: any) => {
                 productCode={productCode}
                 color={color}
                 isSelected={
-                  // assuming tiles only has one color, based on category.json
                   selectedColorCode.toString() === color.colorCode.toString()
                     ? true
                     : false

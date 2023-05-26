@@ -1,5 +1,5 @@
 .app-wrapper {
-  max-width: 98vw;
+  max-width: 70vw;
   width: 100%;
   margin: 0 auto;
 }
@@ -21,6 +21,7 @@ main {
   overflow: hidden;
   max-width: 300px;
 }
+
 .product:hover {
   box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
 }
@@ -79,8 +80,13 @@ a {
   justify-content: left;
   margin-top: 5px;
   position: relative;
-  overflow-x: auto;
+}
+.product-detail .color-swatches-wrapper {
+  flex-wrap: wrap;
+}
+.product .color-swatches-wrapper {
   max-width: 300px;
+  overflow-x: auto;
 }
 .color-swatch {
   border-radius: 50%;

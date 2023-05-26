@@ -15,6 +15,7 @@ const reducer = (state: any, action: any) => {
   }
 };
 
+// component to render the list of products
 const ListPage = () => {
   const [{ loading, error, products }, dispatch] = useReducer(reducer, {
     loading: true,
@@ -25,7 +26,10 @@ const ListPage = () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
         const result = await axios.get('/api/products');
-        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+        dispatch({
+          type: 'FETCH_SUCCESS',
+          payload: result.data?.productList[0]?.products, // assuming productList only has one products array, based on category.json
+        });
       } catch (err: any) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
@@ -41,8 +45,7 @@ const ListPage = () => {
         ) : error ? (
           <div>{error}</div>
         ) : (
-          // assuming productList only has one products array, based on category.json
-          products?.productList[0]?.products.map((product: any) => (
+          products.map((product: any) => (
             <Tile
               // only unique identifier found in products array data
               key={product['extended-size-group-id']}
