@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import ColorSwatch from '../colors/color-swatch';
 import { useState } from 'react';
+import ColorSwatch from '../colors/color-swatch';
 
 const Tile = (props: any) => {
   const { product } = props;
@@ -27,10 +27,10 @@ const Tile = (props: any) => {
           />
         </Link>
         <div className="product-info">
-          {/* <p className="product-badge">{product.badge?.label}</p> */}
+          <p className="product-badge">{product.badge?.label}</p>
           <Link
             to={`/products/${productCode}`}
-            state={{ colorCode: selectedColorCode }}
+            state={{ colorCode: selectedColorCode, product }}
           >
             <p>{product.productDescription}</p>
           </Link>

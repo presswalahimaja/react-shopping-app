@@ -35,7 +35,6 @@ const ListPage = () => {
 
   return (
     <div>
-      <h1> Women’s T-shirts & Tank Tops </h1>
       <div className="products">
         {loading ? (
           <div>Loading...</div>
